@@ -1,0 +1,22 @@
+class Solution {
+    public int findTargetSumWays(int[] nums, int target) {
+        
+        return computeSums(nums, target, 0, 0);
+
+    }
+
+    private int computeSums(int[] nums, int target, int currentSum, int currentIndex) {
+
+        if (currentIndex == nums.length && currentSum == target) return 1;
+        if (currentIndex == nums.length && currentSum != target) return 0;
+        
+        int ways = 0;
+
+        ways += computeSums(nums, target, currentSum+nums[currentIndex], currentIndex + 1);
+        ways += computeSums(nums, target, currentSum-nums[currentIndex], currentIndex + 1);
+
+        return ways;
+
+    }
+
+}
